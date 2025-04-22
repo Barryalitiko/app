@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Mock</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+
+    /* Intro animado */
+    #intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fall 2s ease-in-out 3s forwards;
+    }
+
+    #pentagram {
+      font-size: 320px;
+      color: #25d366;
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fall {
+      to {
+        opacity: 0;
+        transform: translateY(100vh) rotate(180deg);
+        visibility: hidden;
+      }
+    }
+
+    /* WhatsApp UI fake */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .logo {
+      color: #25d366;
+      font-size: 66px;
+      font-weight: bold;
+    }
+
+    .icons {
+      font-size: 60px;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 140px;
+      right: 40px;
+      background: #25d366;
+      color: white;
+      padding: 36px 60px;
+      border-radius: 20px;
+      font-size: 36px;
+      font-weight: bold;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      border-top: 2px solid #ccc;
+      background: white;
+      padding: 30px 0;
+      font-size: 36px;
+    }
+
+    .navbar div {
+      text-align: center;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .navbar .active {
+      color: #25d366;
+      font-weight: bold;
+    }
+
+    .section {
+      display: none;
+      padding: 40px;
+      font-size: 36px;
+    }
+
+    .section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro con pentagrama girando -->
+  <div id="intro">
+    <div id="pentagram">⛧</div>
+  </div>
+
+  <!-- WhatsApp UI falsa -->
+  <header>
+    <div class="logo">WhatsApp</div>
+    <div class="icons">📷 🔍 ⋮</div>
+  </header>
+
+  <button class="floating-btn">+ Enviar mensaje</button>
+
+  <!-- Contenido por sección -->
+  <div id="chats" class="section active">Aquí van tus chats</div>
+  <div id="novedades" class="section">Estas son tus novedades</div>
+  <div id="comunidades" class="section">Comunidades activas</div>
+  <div id="llamadas" class="section">Historial de llamadas</div>
+
+  <!-- Navegación -->
+  <div class="navbar">
+    <div class="tab active" onclick="switchTab('chats', this)">Chats</div>
+    <div class="tab" onclick="switchTab('novedades', this)">Novedades</div>
+    <div class="tab" onclick="switchTab('comunidades', this)">Comunidades</div>
+    <div class="tab" onclick="switchTab('llamadas', this)">Llamadas</div>
+  </div>
+
+  <!-- Script para cambiar pestañas -->
+  <script>
+    function switchTab(tabId, element) {
+      // Ocultar todas las secciones
+      document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+      // Mostrar la seleccionada
+      document.getElementById(tabId).classList.add('active');
+
+      // Quitar el estilo activo de todas las pestañas
+      document.querySelectorAll('.navbar .tab').forEach(tab => tab.classList.remove('active'));
+      // Marcar como activa la pestaña actual
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
