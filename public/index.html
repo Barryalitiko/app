@@ -18,7 +18,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,6 +51,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 30px;
+      transition: color 0.3s ease;
     }
 
     .logo {
@@ -88,6 +89,7 @@
       background: white;
       padding: 30px 0;
       font-size: 36px;
+      transition: background-color 0.3s ease;
     }
 
     .navbar div {
@@ -218,32 +220,39 @@
     function changeTheme(theme) {
       let backgroundColor = "white";
       let logoColor = "#25d366";
+      let navbarColor = "white";
 
       switch (theme) {
         case 'satanico':
           backgroundColor = "black";
           logoColor = "#ff0000";
+          navbarColor = "#333";
           break;
         case 'girl':
           backgroundColor = "#ffccff";
           logoColor = "#ff007f";
+          navbarColor = "#ffccff";
           break;
         case 'nocturno':
           backgroundColor = "#1a1a1a";
           logoColor = "#ffffff";
+          navbarColor = "#1a1a1a";
           break;
         case 'gotico':
           backgroundColor = "#2b2b2b";
           logoColor = "#ff66cc";
+          navbarColor = "#2b2b2b";
           break;
         case 'red':
           backgroundColor = "#ff0000";
           logoColor = "#ffffff";
+          navbarColor = "#ff0000";
           break;
       }
 
       document.body.style.backgroundColor = backgroundColor;
       document.querySelector('.logo').style.color = logoColor;
+      document.querySelector('.navbar').style.backgroundColor = navbarColor;
       document.getElementById('menu').style.right = "-300px"; // Cerrar el menú después de seleccionar tema
     }
   </script>
