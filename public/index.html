@@ -8,6 +8,7 @@
       margin: 0;
       font-family: sans-serif;
       background: white;
+      transition: background-color 0.3s ease;
     }
 
     /* Intro animado */
@@ -60,6 +61,7 @@
 
     .icons {
       font-size: 60px;
+      cursor: pointer;
     }
 
     .floating-btn {
@@ -107,6 +109,36 @@
     .section.active {
       display: block;
     }
+
+    /* Menu deslizable */
+    #menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #333;
+      color: white;
+      transition: right 0.3s;
+      padding: 20px;
+    }
+
+    #menu a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 0;
+      font-size: 24px;
+    }
+
+    #menu a:hover {
+      background-color: #444;
+    }
+
+    #menuButton {
+      font-size: 60px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -119,7 +151,7 @@
   <!-- WhatsApp UI falsa -->
   <header>
     <div class="logo">WhatsApp</div>
-    <div class="icons">📷 🔍 ⋮</div>
+    <div class="icons" id="menuButton">⋮</div>
   </header>
 
   <button class="floating-btn">+ Enviar mensaje</button>
@@ -138,7 +170,16 @@
     <div class="tab" onclick="switchTab('llamadas', this)">Llamadas</div>
   </div>
 
-  <!-- Script para cambiar pestañas -->
+  <!-- Menu deslizable -->
+  <div id="menu">
+    <a href="javascript:void(0)" onclick="changeTheme('satanico')">Satanico</a>
+    <a href="javascript:void(0)" onclick="changeTheme('girl')">Girl</a>
+    <a href="javascript:void(0)" onclick="changeTheme('nocturno')">Nocturno</a>
+    <a href="javascript:void(0)" onclick="changeTheme('gotico')">Gótico</a>
+    <a href="javascript:void(0)" onclick="changeTheme('red')">Red</a>
+  </div>
+
+  <!-- Script para cambiar pestañas y menú -->
   <script>
     function switchTab(tabId, element) {
       // Ocultar todas las secciones
@@ -150,6 +191,49 @@
       document.querySelectorAll('.navbar .tab').forEach(tab => tab.classList.remove('active'));
       // Marcar como activa la pestaña actual
       element.classList.add('active');
+    }
+
+    // Función para abrir y cerrar el menú deslizable
+    document.getElementById('menuButton').onclick = function() {
+      const menu = document.getElementById('menu');
+      if (menu.style.right === "0px") {
+        menu.style.right = "-300px";
+      } else {
+        menu.style.right = "0px";
+      }
+    };
+
+    // Función para cambiar el tema
+    function changeTheme(theme) {
+      let backgroundColor = "white";
+      let logoColor = "#25d366";
+
+      switch (theme) {
+        case 'satanico':
+          backgroundColor = "black";
+          logoColor = "#ff0000";
+          break;
+        case 'girl':
+          backgroundColor = "#ffccff";
+          logoColor = "#ff007f";
+          break;
+        case 'nocturno':
+          backgroundColor = "#1a1a1a";
+          logoColor = "#ffffff";
+          break;
+        case 'gotico':
+          backgroundColor = "#2b2b2b";
+          logoColor = "#ff66cc";
+          break;
+        case 'red':
+          backgroundColor = "#ff0000";
+          logoColor = "#ffffff";
+          break;
+      }
+
+      document.body.style.backgroundColor = backgroundColor;
+      document.querySelector('.logo').style.color = logoColor;
+      document.getElementById('menu').style.right = "-300px"; // Cerrar el menú después de seleccionar tema
     }
   </script>
 
