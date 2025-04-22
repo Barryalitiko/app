@@ -140,10 +140,6 @@
       background-color: #444;
     }
 
-    #menuButton {
-      font-size: 60px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -156,7 +152,7 @@
   <!-- WhatsApp UI falsa -->
   <header>
     <div class="logo">WhatsApp ༴༎𝙾𝙼༎</div>
-    <div class="icons" id="menuButton">⋮</div>
+    <div class="icons" id="menuButton" style="display: none;">⋮</div> <!-- Ya no es necesario -->
   </header>
 
   <!-- Botón flotante solo en chats -->
@@ -166,23 +162,23 @@
   <div id="chats" class="section active">Aquí van tus chats</div>
   <div id="novedades" class="section">Estas son tus novedades</div>
   <div id="comunidades" class="section">Comunidades activas</div>
-  <div id="estilos" class="section">Historial de llamadas</div> <!-- Cambié 'llamadas' por 'estilos' -->
+  <div id="estilos" class="section">
+    <!-- Aquí es donde estará el menú -->
+    <div id="menu">
+      <a href="javascript:void(0)" onclick="changeTheme('satanico')">Satanico</a>
+      <a href="javascript:void(0)" onclick="changeTheme('girl')">Girl</a>
+      <a href="javascript:void(0)" onclick="changeTheme('nocturno')">Nocturno</a>
+      <a href="javascript:void(0)" onclick="changeTheme('gotico')">Gótico</a>
+      <a href="javascript:void(0)" onclick="changeTheme('red')">Red</a>
+    </div>
+  </div>
 
   <!-- Navegación -->
   <div class="navbar">
     <div class="tab active" onclick="switchTab('chats', this)">Chats</div>
     <div class="tab" onclick="switchTab('novedades', this)">Novedades</div>
     <div class="tab" onclick="switchTab('comunidades', this)">Comunidades</div>
-    <div class="tab" onclick="switchTab('estilos', this)">Estilos</div> <!-- Cambié 'llamadas' por 'estilos' -->
-  </div>
-
-  <!-- Menu deslizable -->
-  <div id="menu">
-    <a href="javascript:void(0)" onclick="changeTheme('satanico')">Satanico</a>
-    <a href="javascript:void(0)" onclick="changeTheme('girl')">Girl</a>
-    <a href="javascript:void(0)" onclick="changeTheme('nocturno')">Nocturno</a>
-    <a href="javascript:void(0)" onclick="changeTheme('gotico')">Gótico</a>
-    <a href="javascript:void(0)" onclick="changeTheme('red')">Red</a>
+    <div class="tab" onclick="switchTab('estilos', this)">Estilos</div> <!-- Ya está en la sección 'Estilos' -->
   </div>
 
   <!-- Script para cambiar pestañas y menú -->
@@ -205,16 +201,6 @@
       // Marcar como activa la pestaña actual
       element.classList.add('active');
     }
-
-    // Función para abrir y cerrar el menú deslizable
-    document.getElementById('menuButton').onclick = function() {
-      const menu = document.getElementById('menu');
-      if (menu.style.right === "0px") {
-        menu.style.right = "-300px";
-      } else {
-        menu.style.right = "0px";
-      }
-    };
 
     // Función para cambiar el tema
     function changeTheme(theme) {
@@ -253,7 +239,6 @@
       document.body.style.backgroundColor = backgroundColor;
       document.querySelector('.logo').style.color = logoColor;
       document.querySelector('.navbar').style.backgroundColor = navbarColor;
-      document.getElementById('menu').style.right = "-300px"; // Cerrar el menú después de seleccionar tema
     }
   </script>
 
