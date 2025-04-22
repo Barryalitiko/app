@@ -1,0 +1,12 @@
+{
+  "name": "whatsapp-mock",
+  "version": "1.0.0",
+  "description": "Mock de WhatsApp UI en localhost",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
