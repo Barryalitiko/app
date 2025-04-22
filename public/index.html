@@ -115,29 +115,23 @@
       opacity: 1;
     }
 
-    /* Menu deslizable */
-    #menu {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 300px;
-      height: 100%;
-      background: #333;
-      color: white;
-      transition: right 0.3s;
-      padding: 20px;
-    }
-
-    #menu a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px 0;
+    /* Menú dentro de la pestaña Estilos */
+    #estilos-menu {
       font-size: 24px;
+      display: block;
     }
 
-    #menu a:hover {
-      background-color: #444;
+    #estilos-menu a {
+      color: #25d366;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      margin: 10px 0;
+    }
+
+    #estilos-menu a:hover {
+      color: #333;
+      background-color: #f0f0f0;
     }
 
   </style>
@@ -152,7 +146,7 @@
   <!-- WhatsApp UI falsa -->
   <header>
     <div class="logo">WhatsApp ༴༎𝙾𝙼༎</div>
-    <div class="icons" id="menuButton" style="display: none;">⋮</div> <!-- Ya no es necesario -->
+    <div class="icons" id="menuButton" style="display: none;">⋮</div>
   </header>
 
   <!-- Botón flotante solo en chats -->
@@ -163,8 +157,8 @@
   <div id="novedades" class="section">Estas son tus novedades</div>
   <div id="comunidades" class="section">Comunidades activas</div>
   <div id="estilos" class="section">
-    <!-- Aquí es donde estará el menú -->
-    <div id="menu">
+    <!-- Menú Estilos -->
+    <div id="estilos-menu">
       <a href="javascript:void(0)" onclick="changeTheme('satanico')">Satanico</a>
       <a href="javascript:void(0)" onclick="changeTheme('girl')">Girl</a>
       <a href="javascript:void(0)" onclick="changeTheme('nocturno')">Nocturno</a>
@@ -178,7 +172,7 @@
     <div class="tab active" onclick="switchTab('chats', this)">Chats</div>
     <div class="tab" onclick="switchTab('novedades', this)">Novedades</div>
     <div class="tab" onclick="switchTab('comunidades', this)">Comunidades</div>
-    <div class="tab" onclick="switchTab('estilos', this)">Estilos</div> <!-- Ya está en la sección 'Estilos' -->
+    <div class="tab" onclick="switchTab('estilos', this)">Estilos</div> <!-- Menú ya visible aquí -->
   </div>
 
   <!-- Script para cambiar pestañas y menú -->
