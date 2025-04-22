@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor WhatsApp Mock corriendo en http://localhost:${PORT}`);
+// Hacer que el servidor escuche en todas las interfaces de red (0.0.0.0)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Servidor WhatsApp Mock corriendo en http://0.0.0.0:${PORT}`);
 });
