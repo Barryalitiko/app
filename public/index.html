@@ -75,6 +75,7 @@
       font-size: 36px;
       font-weight: bold;
       box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+      display: none;
     }
 
     .navbar {
@@ -104,10 +105,12 @@
       display: none;
       padding: 40px;
       font-size: 36px;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .section.active {
       display: block;
+      opacity: 1;
     }
 
     /* Menu deslizable */
@@ -154,7 +157,8 @@
     <div class="icons" id="menuButton">⋮</div>
   </header>
 
-  <button class="floating-btn">+ Enviar mensaje</button>
+  <!-- Botón flotante solo en chats -->
+  <button class="floating-btn" id="sendMessageBtn">+ Enviar mensaje</button>
 
   <!-- Contenido por sección -->
   <div id="chats" class="section active">Aquí van tus chats</div>
@@ -186,6 +190,13 @@
       document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
       // Mostrar la seleccionada
       document.getElementById(tabId).classList.add('active');
+
+      // Mostrar o esconder el botón de enviar mensaje
+      if (tabId === 'chats') {
+        document.getElementById('sendMessageBtn').style.display = 'block';
+      } else {
+        document.getElementById('sendMessageBtn').style.display = 'none';
+      }
 
       // Quitar el estilo activo de todas las pestañas
       document.querySelectorAll('.navbar .tab').forEach(tab => tab.classList.remove('active'));
