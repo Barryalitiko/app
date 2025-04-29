@@ -55,6 +55,10 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes rotatePentagram {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     main {
       padding: 2rem;
       background-color: rgba(46, 46, 46, 0.8);
@@ -74,24 +78,29 @@
     p, h1 {
       margin: 0.5rem 0;
     }
+    .pentagram {
+      font-size: 5rem;
+      animation: rotatePentagram 10s linear infinite;
+      color: #ff0000; /* Color rojo para el pentagrama */
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Krampus ༴༎𝙾𝙼༎</h1>
+    <h1 class="pentagram">🖤✡️🖤</h1> <!-- Símbolo del pentagrama -->
     <div class="menu-icon" onclick="toggleMenu()">
       <div></div>
       <div></div>
       <div></div>
     </div>
     <div class="menu" id="menu">
-      <p onclick="irAOpcion('opcion1.html')">Opción 1</p>
+      <p onclick="irAOpcion('index.html')">Volver al Menú Principal</p>
       <p>Opción 2</p>
       <p>Opción 3</p>
     </div>
   </header>
   <main>
-    <p>Este es el contenido principal de la página.</p>
+    <p>Este es el contenido de la Opción 1.</p>
   </main>
   <footer>
     <p>© 2025 Krampus</p>
