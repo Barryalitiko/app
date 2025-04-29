@@ -2,239 +2,105 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>WhatsApp Mock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krampus ༴༎𝙾𝙼༎</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: sans-serif;
-      background: white;
-      transition: background-color 0.3s ease;
+      padding: 0;
+      background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+      color: #ccc;
+      transition: background 0.5s ease;
     }
-
-    /* Intro animado */
-    #intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      animation: fall 2s ease-in-out 3s forwards;
-    }
-
-    #pentagram {
-      font-size: 320px;
-      color: #25d366;
-      animation: spin 3s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes fall {
-      to {
-        opacity: 0;
-        transform: translateY(100vh) rotate(180deg);
-        visibility: hidden;
-      }
-    }
-
-    /* WhatsApp UI fake */
     header {
+      background: linear-gradient(90deg, #b30000, #4d0000);
+      color: #fff;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 30px;
-      transition: color 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
-
-    .logo {
-      color: #25d366;
-      font-size: 66px;
-      font-weight: bold;
-    }
-
-    .icons {
-      font-size: 60px;
+    .menu-icon {
+      width: 30px;
+      height: 22px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-
-    .floating-btn {
-      position: fixed;
-      bottom: 140px;
-      right: 40px;
-      background: #25d366;
-      color: white;
-      padding: 36px 60px;
-      border-radius: 20px;
-      font-size: 36px;
-      font-weight: bold;
-      box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+    .menu-icon div {
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu {
       display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     }
-
-    .navbar {
+    .menu.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    main {
+      padding: 2rem;
+      background-color: rgba(46, 46, 46, 0.8);
+      backdrop-filter: blur(3px);
+      transition: background-color 0.5s ease;
+    }
+    footer {
+      background: linear-gradient(to right, #222, #444);
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
       position: fixed;
       bottom: 0;
       width: 100%;
-      display: flex;
-      justify-content: space-around;
-      border-top: 2px solid #ccc;
-      background: white;
-      padding: 30px 0;
-      font-size: 36px;
-      transition: background-color 0.3s ease;
+      border-top: 1px solid #b30000;
     }
-
-    .navbar div {
-      text-align: center;
-      color: #555;
-      cursor: pointer;
+    p, h1 {
+      margin: 0.5rem 0;
     }
-
-    .navbar .active {
-      color: #25d366;
-      font-weight: bold;
-    }
-
-    .section {
-      display: none;
-      padding: 40px;
-      font-size: 36px;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .section.active {
-      display: block;
-      opacity: 1;
-    }
-
-    /* Menú dentro de la pestaña Estilos */
-    #estilos-menu {
-      font-size: 24px;
-      display: block;
-    }
-
-    #estilos-menu a {
-      color: #25d366;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-      margin: 10px 0;
-    }
-
-    #estilos-menu a:hover {
-      color: #333;
-      background-color: #f0f0f0;
-    }
-
   </style>
 </head>
 <body>
-
-  <!-- Intro con pentagrama girando -->
-  <div id="intro">
-    <div id="pentagram">⛧</div>
-  </div>
-
-  <!-- WhatsApp UI falsa -->
   <header>
-    <div class="logo">WhatsApp ༴༎𝙾𝙼༎</div>
-    <div class="icons" id="menuButton" style="display: none;">⋮</div>
-  </header>
-
-  <!-- Botón flotante solo en chats -->
-  <button class="floating-btn" id="sendMessageBtn">+ Enviar mensaje</button>
-
-  <!-- Contenido por sección -->
-  <div id="chats" class="section active">Aquí van tus chats</div>
-  <div id="novedades" class="section">Estas son tus novedades</div>
-  <div id="comunidades" class="section">Comunidades activas</div>
-  <div id="estilos" class="section">
-    <!-- Menú Estilos -->
-    <div id="estilos-menu">
-      <a href="javascript:void(0)" onclick="changeTheme('satanico')">Satanico</a>
-      <a href="javascript:void(0)" onclick="changeTheme('girl')">Girl</a>
-      <a href="javascript:void(0)" onclick="changeTheme('nocturno')">Nocturno</a>
-      <a href="javascript:void(0)" onclick="changeTheme('gotico')">Gótico</a>
-      <a href="javascript:void(0)" onclick="changeTheme('red')">Red</a>
+    <h1>Krampus ༴༎𝙾𝙼༎</h1>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-  </div>
-
-  <!-- Navegación -->
-  <div class="navbar">
-    <div class="tab active" onclick="switchTab('chats', this)">Chats</div>
-    <div class="tab" onclick="switchTab('novedades', this)">Novedades</div>
-    <div class="tab" onclick="switchTab('comunidades', this)">Comunidades</div>
-    <div class="tab" onclick="switchTab('estilos', this)">Estilos</div> <!-- Menú ya visible aquí -->
-  </div>
-
-  <!-- Script para cambiar pestañas y menú -->
+    <div class="menu" id="menu">
+      <p>Opción 1</p>
+      <p>Opción 2</p>
+      <p>Opción 3</p>
+    </div>
+  </header>
+  <main>
+    <p>Este es el contenido principal de la página.</p>
+  </main>
+  <footer>
+    <p>© 2025 Krampus</p>
+  </footer>
   <script>
-    function switchTab(tabId, element) {
-      // Ocultar todas las secciones
-      document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-      // Mostrar la seleccionada
-      document.getElementById(tabId).classList.add('active');
-
-      // Mostrar o esconder el botón de enviar mensaje
-      if (tabId === 'chats') {
-        document.getElementById('sendMessageBtn').style.display = 'block';
-      } else {
-        document.getElementById('sendMessageBtn').style.display = 'none';
-      }
-
-      // Quitar el estilo activo de todas las pestañas
-      document.querySelectorAll('.navbar .tab').forEach(tab => tab.classList.remove('active'));
-      // Marcar como activa la pestaña actual
-      element.classList.add('active');
-    }
-
-    // Función para cambiar el tema
-    function changeTheme(theme) {
-      let backgroundColor = "white";
-      let logoColor = "#25d366";
-      let navbarColor = "white";
-
-      switch (theme) {
-        case 'satanico':
-          backgroundColor = "black";
-          logoColor = "#ff0000";
-          navbarColor = "#333";
-          break;
-        case 'girl':
-          backgroundColor = "#ffccff";
-          logoColor = "#ff007f";
-          navbarColor = "#ffccff";
-          break;
-        case 'nocturno':
-          backgroundColor = "#1a1a1a";
-          logoColor = "#ffffff";
-          navbarColor = "#1a1a1a";
-          break;
-        case 'gotico':
-          backgroundColor = "#2b2b2b";
-          logoColor = "#ff66cc";
-          navbarColor = "#2b2b2b";
-          break;
-        case 'red':
-          backgroundColor = "#ff0000";
-          logoColor = "#ffffff";
-          navbarColor = "#ff0000";
-          break;
-      }
-
-      document.body.style.backgroundColor = backgroundColor;
-      document.querySelector('.logo').style.color = logoColor;
-      document.querySelector('.navbar').style.backgroundColor = navbarColor;
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
     }
   </script>
-
 </body>
 </html>
