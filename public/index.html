@@ -85,7 +85,7 @@
       <div></div>
     </div>
     <div class="menu" id="menu">
-      <p>Opción 1</p>
+      <p onclick="irAOpcion('opcion1.html')">Opción 1</p>
       <p>Opción 2</p>
       <p>Opción 3</p>
     </div>
@@ -100,6 +100,14 @@
     function toggleMenu() {
       const menu = document.getElementById('menu');
       menu.classList.toggle('show');
+    }
+
+    function irAOpcion(url) {
+      document.body.style.transition = 'opacity 0.5s ease';
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        window.location.href = url;
+      }, 500);
     }
   </script>
 </body>
